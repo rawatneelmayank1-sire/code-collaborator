@@ -1,0 +1,140 @@
+/* Layout: top room bar; editor centre with the output panel under it; 288 px rail for people and input.
+   Under 900 px everything stacks in one scrolling column. Colours: blue-graphite night editor, amber caret
+   for actions; participant colours are reserved for people. */
+
+:root {
+  color-scheme: light;
+
+  /* colour: light theme (bare :root) */
+  --bg: #f3f4f7;
+  --surface: #ffffff;
+  --raised: #eceef3;
+  --sunken: #e6e9ef;
+  --line: #d5d9e2;
+  --line-strong: #8f97a8;
+  --text: #191c25;
+  --muted: #555c6e;
+  --accent: #e8a43a;          /* amber fill (Run, selected) */
+  --accent-hover: #f0b24a;
+  --on-accent: #191c25;
+  --accent-text: #85570a;     /* amber used as text or rings on light surfaces */
+  --focus: #85570a;
+  --ok: #2f7a3e;
+  --bad: #b3261e;
+  --bad-surface: #fbeceb;
+  --editor-bg: #ffffff;
+  --selection: rgb(232 164 58 / 0.28);
+  --shadow-color: 224deg 20% 40%;
+  --shadow-1: 0 1px 1px hsl(var(--shadow-color) / 0.08), 0 2px 4px hsl(var(--shadow-color) / 0.06);
+  --shadow-2: 0 1px 2px hsl(var(--shadow-color) / 0.08), 0 4px 10px hsl(var(--shadow-color) / 0.08), 0 12px 28px hsl(var(--shadow-color) / 0.08);
+  --top-highlight: inset 0 1px 0 rgb(255 255 255 / 0);
+
+  /* type */
+  --font-ui: 'Spline Sans Variable', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-code: 'Spline Sans Mono Variable', ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --text-xs: 0.75rem;   /* 12 */
+  --text-sm: 0.875rem;  /* 14 */
+  --text-md: 1rem;      /* 16 */
+  --text-lg: 1.3125rem; /* 21 */
+  --text-xl: 2.25rem;   /* 36 */
+
+  /* space (4 px base) */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 64px;
+
+  /* shape: controls 8, panels 12, chips 6; nested radii are parent minus padding */
+  --r-chip: 6px;
+  --r-control: 8px;
+  --r-panel: 12px;
+
+  /* hit areas */
+  --hit: 32px;
+
+  /* z-index scale */
+  --z-raised: 1;
+  --z-sticky: 10;
+  --z-dropdown: 20;
+  --z-toast: 50;
+
+  /* motion (UXM section A) */
+  --dur-instant: 0ms;
+  --dur-micro: 100ms;
+  --dur-fast: 150ms;
+  --dur-base: 200ms;
+  --dur-moderate: 250ms;
+  --dur-slow: 300ms;
+  --exit-factor: 0.75;
+  --stagger: 40ms;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in: cubic-bezier(0.3, 0, 1, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-hover: ease;
+  --enter-distance: 8px;
+  --enter-scale: 0.96;
+  --press-scale: 0.97;
+}
+
+@media (pointer: coarse) {
+  :root { --hit: 44px; }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #14161d;
+    --surface: #1b1e27;
+    --raised: #232733;
+    --sunken: #111319;
+    --line: #343949;
+    --line-strong: #6c7387;
+    --text: #e7e9ef;
+    --muted: #a0a6b6;
+    --accent: #f0b24a;
+    --accent-hover: #f5c066;
+    --on-accent: #14161d;
+    --accent-text: #f0b24a;
+    --focus: #f0b24a;
+    --ok: #7ccb8a;
+    --bad: #f2908a;
+    --bad-surface: #2e1f22;
+    --editor-bg: #171920;
+    --selection: rgb(240 178 74 / 0.24);
+    --shadow-color: 228deg 30% 4%;
+    --top-highlight: inset 0 1px 0 rgb(255 255 255 / 0.05);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14161d;
+  --surface: #1b1e27;
+  --raised: #232733;
+  --sunken: #111319;
+  --line: #343949;
+  --line-strong: #6c7387;
+  --text: #e7e9ef;
+  --muted: #a0a6b6;
+  --accent: #f0b24a;
+  --accent-hover: #f5c066;
+  --on-accent: #14161d;
+  --accent-text: #f0b24a;
+  --focus: #f0b24a;
+  --ok: #7ccb8a;
+  --bad: #f2908a;
+  --bad-surface: #2e1f22;
+  --editor-bg: #171920;
+  --selection: rgb(240 178 74 / 0.24);
+  --shadow-color: 228deg 30% 4%;
+  --top-highlight: inset 0 1px 0 rgb(255 255 255 / 0.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --enter-distance: 0px; --enter-scale: 1; --press-scale: 1; --stagger: 0ms; }
+}
+:root[data-motion="reduce"] { --enter-distance: 0px; --enter-scale: 1; --press-scale: 1; --stagger: 0ms; }

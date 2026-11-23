@@ -1,0 +1,38 @@
+{
+  "name": "code-collaborator",
+  "version": "2.0.0",
+  "description": "Real-time collaborative code editor: Yjs CRDT sync over WebSockets, live cursors, rooms that survive restarts, and a pluggable code runner.",
+  "private": true,
+  "type": "module",
+  "author": "Neelmayank Rawat <rawatneelmayank1@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rawatneelmayank1-sire/code-collaborator.git"
+  },
+  "homepage": "https://github.com/rawatneelmayank1-sire/code-collaborator#readme",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,client -c yellow,cyan \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client",
+    "start": "npm run start -w server",
+    "test": "npm run test -w server && npm run test -w client",
+    "lint": "eslint .",
+    "piston:install": "node scripts/piston-install.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "concurrently": "10.0.7",
+    "eslint": "10.14.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-react-refresh": "0.5.7",
+    "globals": "17.14.0",
+    "jsdom": "29.1.1"
+  }
+}

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+      // Apply the saved theme and the ?static / ?reduce switches before first paint.
+      (function () {
+        var d = document.documentElement, q = new URLSearchParams(location.search), t = null;
+        try { t = localStorage.getItem('cc-theme'); } catch (e) {}
+        if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t);
+        if (q.has('static')) d.setAttribute('data-static', '');
+        if (q.has('reduce') || matchMedia('(prefers-reduced-motion: reduce)').matches) d.setAttribute('data-motion', 'reduce');
+      })();
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Code Collaborator</title>
+    <meta name="description" content="Edit the same file with your team in real time: live cursors, conflict-free merging with Yjs, rooms that survive restarts, and a built-in code runner." />
+    <meta name="theme-color" content="#F3F4F7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14161D" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content="Code Collaborator" />
+    <meta property="og:description" content="Real-time collaborative code editor with live cursors and conflict-free merging." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>Code Collaborator needs JavaScript to open the shared editor.</noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
